@@ -1,6 +1,6 @@
 <div>
     <h1>Manage Conference Rooms</h1>
-    <form name="formCreateRoom" novalidate>
+<form name="formCreateRoom" novalidate>
     <label>Conference Room</label>
     <input type="text" name="conferenceName" ng-model = "conferenceName"/>
     <p><label>Number of seats <input type="number" name="numberOfSeats" ng-model = "numberOfSeats"></label></p>
@@ -26,4 +26,12 @@
     </div>
     <p><button ng-click="CreateForm(formCreateRoom)">Submit</button></p>
 </form>
+
+    <h3>Created rooms are listed below</h3>
+<div class="displayrooms">
+<div class="wrapper">
+<div class="first">1</div><div class="sec">room name</div><div class="third">room amenities</div><div class="fourth"><input type="button" name="Edit" value="Edit"></div><div class="fifth"><input type="button" name="Delete" value="Delete"></div>
+</div>
+</div>
+    </div>
 </div>
