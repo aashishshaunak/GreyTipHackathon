@@ -16,9 +16,6 @@ app.config(function ($routeProvider) {
     }
 )
 
-app.controller('mainController', ['$scope', function ($scope) {
-}]);
-
 app.controller('ManageController',['$scope', function ($scope) {
 }]);
 
