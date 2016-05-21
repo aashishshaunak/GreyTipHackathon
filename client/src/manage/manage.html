@@ -24,5 +24,21 @@
         <li><label for="videoconferencing"><input type="checkbox" name="videoconferencing"> Video-conferencing facility</label></li>
     </div>
     <p><input type="submit" value="Add Room"></p>
+    <style type="text/css">
+    .displayrooms .wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+    .displayrooms .wrapper div { float: left; border: 1px solid #000; padding: 20px 10px; width: 15%;}
+
+    .displayrooms .wrapper div.first { width: 5%;}
+    displayrooms .wrapper div.fourth { width: 30%;}
+    </style>
+    <p>Room are listed below</p>
+    <div class="displayrooms">
+        <div class="wrapper">
+            <div class="first">1</div><div class="sec">room name</div><div class="third">room amenities</div><div class="fourth"><input type="button" name="Edit" value="Edit"></div><div class="fifth"><input type="button" name="Delete" value="Delete"></div>
+        </div>
+    </div>
 </form>
 </div>
