@@ -1,15 +1,18 @@
-from datetime import date
-from calendar import monthrange
-from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+<<<<<<< HEAD
 from models import chimeRoom, chimeBooking
 from dateutil import parser
+=======
+from models import chimeRoom
+
+>>>>>>> 41633ccb26f7794f2e07e2bc0380034a0dc599dd
 
 class ChimeRoom(APIView):
     def post(self, request):
         try:
+<<<<<<< HEAD
             chime_room_obj = chimeRoom(capacity=request.data['capacity'][0],floor=request.data['floor'][0],
                                        name=request.data['name'][0],active=request.data['active'][0],white_board=request.data['white_board'][0],
                                        wi_fi=request.data['wi_fi'][0],projector=request.data['projector'][0],internet=request.data['internet'][0],
@@ -39,3 +42,18 @@ class ChimeBooking(APIView):
         except Exception as e:
             return Response({"error": "cannot save data with above data set"})
         return Response({"hello":"mister"})
+=======
+            chime_room_obj = chimeRoom(capacity=request.data['numberOfSeats'],floor=request.data['floorValue'],
+                                       name=request.data['conferenceName'],active=True,
+                                       white_board=request.data['ameneties']['whiteboard'],
+                                       wi_fi=request.data['ameneties']['wifi'],
+                                       projector=request.data['ameneties']['projector'],
+                                       internet=request.data['ameneties']['internet'],
+                                       intercom=request.data['ameneties']['intercom'],
+                                       tele_conferencing=request.data['ameneties']['teleconferencing'],
+                                       video_conferencing=request.data['ameneties']['videoconferencing'])
+            chime_room_obj.save()
+        except Exception as e:
+            return Response({"error":"cannot save data with above data set"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(request.data, status=status.HTTP_200_OK)
+>>>>>>> 41633ccb26f7794f2e07e2bc0380034a0dc599dd

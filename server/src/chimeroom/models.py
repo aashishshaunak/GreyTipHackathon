@@ -12,7 +12,7 @@ class chimeRoom(models.Model):
     intercom = models.BooleanField()
     tele_conferencing = models.BooleanField()
     video_conferencing = models.BooleanField()
-    is_locked = models.BooleanField()
+    is_locked = models.BooleanField(default=False)
 
 class chimeBooking(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True, blank=False)
