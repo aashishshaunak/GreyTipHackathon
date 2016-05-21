@@ -12,3 +12,4 @@ class chimeRoom(models.Model):
     intercom = models.BooleanField()
     tele_conferencing = models.BooleanField()
     video_conferencing = models.BooleanField()
+    is_locked = models.BooleanField()
