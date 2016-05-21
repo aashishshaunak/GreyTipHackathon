@@ -2,3 +2,6 @@
 h1 { font-size: 25px;}
 h2 { font-size: 20px;}
 .amenities li{ list-style: none; }
+.user{width:600px;
+	margin:0 auto;}
+ul li{list-style:none}

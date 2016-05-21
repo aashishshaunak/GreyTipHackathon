@@ -7,6 +7,12 @@ app.config(function ($routeProvider) {
                 templateUrl: "manage/manage.html",
                 controller: "ManageController"
             }
+        ).
+	when("/book",
+            {
+                templateUrl: "book/book.html",
+                controller: "BookController"
+            }
         ).otherwise(
         {
             templateUrl: "404.html",
@@ -54,6 +60,9 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
                 console.log(err)
             });
         };
+}]);
+app.controller('BookController',['$scope', function ($scope) {
+    
 }]);
 
 app.controller('404Controller', ['$scope', function ($scope) {
