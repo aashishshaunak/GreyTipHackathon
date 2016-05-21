@@ -17,6 +17,8 @@ app.config(function ($routeProvider) {
 )
 
 app.controller('ManageController',['$scope', function ($scope) {
+    $scope.itemNumber = 0 ;
+    $scope.repeatElement = [];
 }]);
 
 app.controller('404Controller', ['$scope', function ($scope) {
