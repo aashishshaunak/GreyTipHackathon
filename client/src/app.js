@@ -7,6 +7,12 @@ app.config(function ($routeProvider) {
                 templateUrl: "manage/manage.html",
                 controller: "ManageController"
             }
+        ).
+	when("/book",
+            {
+                templateUrl: "book/book.html",
+                controller: "BookController"
+            }
         ).otherwise(
         {
             templateUrl: "404.html",
@@ -19,6 +25,9 @@ app.config(function ($routeProvider) {
 app.controller('ManageController',['$scope', function ($scope) {
     $scope.itemNumber = 0 ;
     $scope.repeatElement = [];
+}]);
+app.controller('BookController',['$scope', function ($scope) {
+    
 }]);
 
 app.controller('404Controller', ['$scope', function ($scope) {
