@@ -20,3 +20,23 @@ class ChimeRoom(APIView):
         except Exception as e:
             return Response({"error":"cannot save data with above data set"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return Response(request.data, status=status.HTTP_200_OK)
+
+
+
+class RoomView(APIView):
+
+    def get(self,request):
+        projects = chimeRoom.objects.filter(active=True)
+        data = []
+        for project in projects:
+            data = project.__dict__
+        return Response(data, status=status.HTTP_200_OK)
+
+    def delete(self, request):
+        try:
+            project = chimeRoom.objects.get(name=request.data['conferenceName'])
+        except chimeRoom.DoesNotExist:
+            return Response(request.data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        project.delete()
+        return Response(request.data, status=status.HTTP_200_OK)
+

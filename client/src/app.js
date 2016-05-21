@@ -40,6 +40,31 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
         })
 
     }
+    $http({
+            method: 'GET',
+            url: chimeroom.base_url + '/viewrooms',
+            data: null
+    }).then(
+        function (result) {
+
+        },
+        function (err) {
+            console.log(err)
+        });
+
+    $scope.deleteProject = function (project_id) {
+        $http({
+            method: 'DELETE',
+            url: chimeroom.base_url + '/viewrooms',
+        }).then(
+            function (result) {
+                alert('Deleted successfully')
+            },
+            function (err) {
+                console.log(err)
+            });
+
+        };
     $scope.CreateForm = function (formCreateRoom) {
         $scope.form_object = {};
         $scope.form_object["conferenceName"] = formCreateRoom.conferenceName.$modelValue;
@@ -51,7 +76,6 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
             method: 'POST',
             url: chimeroom.base_url + '/addroom',
             data: $scope.form_object,
-//            headers: {'Content-Type': undefined}
         }).then(
             function (result) {
 
@@ -59,7 +83,8 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
             function (err) {
                 console.log(err)
             });
-        };
+    };
+
 }]);
 app.controller('BookController',['$scope', function ($scope) {
     
