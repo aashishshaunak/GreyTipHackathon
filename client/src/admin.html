@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chime Room</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="main">
+<h1>Admin Page</h1>
+
+<form>
+    <lable>Conference Room</lable>
+    <input type="text" name="conference" />
+    <br><h2>Amenities</h2>
+    <div class="amenities">
+        <li><label for="wifi"><input type="checkbox" name="wifi"> Wifi</label></li>
+        <li><label for="projector"><input type="checkbox" name="Projector"> Projector</label></li>
+        <li><label for="whiteboard"><input type="checkbox" name="whiteboard"> White Board</label></li>
+        <li><label for="internet"><input type="checkbox" name="internet"> Internet connectivity</label></li>
+        <li><label for="intercom"><input type="checkbox" name="intercom"> Intercom facility</label></li>
+        <li><label for="teleconferencing"><input type="checkbox" name="teleconferencing"> Tele-conferencing facility</label></li>
+        <li><label for="videoconferencing"><input type="checkbox" name="videoconferencing"> Video-conferencing facility</label></li>
+    </div>
+    <input type="submit" value="Add Room">
+</form>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>
