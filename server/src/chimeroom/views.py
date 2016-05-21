@@ -1,10 +1,11 @@
+from datetime import date
+from calendar import monthrange
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from models import chimeRoom, chimeBooking
 from dateutil import parser
-from models import chimeRoom
-
 
 class ChimeRoom(APIView):
     def post(self, request):
@@ -68,7 +69,7 @@ class ChimeBooking(APIView):
         meeting_st = parser.parse(request.data['meeting_starting'])
         meeting_end = parser.parse(request.data['meeting_ending'])
         try:
-            chime_room_obj = chimeBooking(room_id=request.data['room_id'], meeting_starting=meeting_st,
+            chime_room_obj = chimeRoom(room_id=request.data['room_id'], meeting_starting=meeting_st,
                                        meeting_ending=meeting_end, active=request.data['active'],
                                        white_board=request.data['white_board'],
                                        wi_fi=request.data['wi_fi'], projector=request.data['projector'],
