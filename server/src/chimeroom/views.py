@@ -29,10 +29,22 @@ class RoomView(APIView):
 
     def get(self,request):
         projects = chimeRoom.objects.filter(active=True)
-        data = []
+        all_data = list()
         for project in projects:
-            data = project.__dict__
-        return Response(data, status=status.HTTP_200_OK)
+            data = dict()
+            data['ameneties'] = dict()
+            data['capacity'] = project.capacity
+            data['floor'] = project.floor
+            data['is_locked'] = project.is_locked
+            data['ameneties']['intercom'] = project.intercom
+            data['ameneties']['wi_fi'] = project.wi_fi
+            data['ameneties']['video_conferencing'] = project.video_conferencing
+            data['ameneties']['white_board'] = project.white_board
+            data['ameneties']['tele_conferencing'] = project.tele_conferencing
+            data['ameneties']['internet'] = project.internet
+            data['ameneties']['projector'] = project.projector
+            all_data.append(data)
+        return Response(all_data, status=status.HTTP_200_OK)
 
     def delete(self, request):
         try:

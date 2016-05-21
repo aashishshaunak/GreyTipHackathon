@@ -46,6 +46,8 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
             data: null
     }).then(
         function (result) {
+            $scope.availableRooms = result.data
+            console.log($scope.availableRooms)
 
         },
         function (err) {
