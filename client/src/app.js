@@ -2,14 +2,9 @@ var app = angular.module('chimeRoom', ['ngRoute']);
 
 app.config(function ($routeProvider) {
     $routeProvider.
-        when("/",
+        when("/manage",
             {
-                templateUrl: "index.html",
-                controller: "mainController"
-            }
-        ).when("/manage",
-            {
-                templateUrl: "manage/index.html",
+                templateUrl: "manage/manage.html",
                 controller: "ManageController"
             }
         ).otherwise(
