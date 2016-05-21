@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-<link rel="stylesheet/less" type="text/css" href="assets/style.css">
-<script src="vendor/angular.min.js?version=0.4.2"></script>
-<script src="vendor/angular-route.js?version=0.4.2"></script>
-</head>
-<body>
-hi
-</body>
+<html lang="en" ng-app="chimeRoom">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <script src="vendor/angular.min.js"></script>
+        <script src="vendor/angular-route.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div id="content" ng-view></div>
+        </div>
+    </body>
 </html>
