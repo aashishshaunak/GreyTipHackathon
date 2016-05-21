@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../alps/.idea/alps.iml" filepath="$PROJECT_DIR$/../../alps/.idea/alps.iml" />
+      <module fileurl="file://$USER_HOME$/alps/.idea/alps.iml" filepath="$USER_HOME$/alps/.idea/alps.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/chimeroom.iml" filepath="$PROJECT_DIR$/.idea/chimeroom.iml" />
     </modules>
   </component>
