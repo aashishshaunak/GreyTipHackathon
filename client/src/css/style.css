@@ -2,6 +2,21 @@
 h1 { font-size: 25px;}
 h2 { font-size: 20px;}
 .amenities li{ list-style: none; }
+.displayRoom div.wrapper {border: 1px solid #000; height: 58px; }
+.displayRoom div.wrapper div { float: left; padding: 20px; }
+.displayRoom div.first {width:5%; border-right: 1px solid #000;}
+.displayRoom div.second { width: 15%; border-right: 1px solid #000; }
+.displayRoom div.third { width: 25%; border-right: 1px solid #000; }
+.displayRoom div.fourth { width: 9%; border-right: 1px solid #000; }
+.displayRoom div.third { width: 9%; }
+.displayrooms .wrapper {
+width: 800px;
+margin: 0 auto;
+}
+.displayrooms .wrapper div { float: left; border: 1px solid #000; padding: 20px 10px; width: 15%;}
+.displayrooms .wrapper div.first { width: 5%;}
+.displayrooms .wrapper div.fourth { width: 30%;}
 .user{width:600px;
 	margin:0 auto;}
 ul li{list-style:none}
+
