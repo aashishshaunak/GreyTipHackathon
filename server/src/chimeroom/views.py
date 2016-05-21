@@ -31,18 +31,27 @@ class RoomView(APIView):
         projects = chimeRoom.objects.filter(active=True)
         all_data = list()
         for project in projects:
+            print project.__dict__
             data = dict()
-            data['ameneties'] = dict()
+            data['ameneties'] = []
+            data['name'] = project.name
             data['capacity'] = project.capacity
             data['floor'] = project.floor
             data['is_locked'] = project.is_locked
-            data['ameneties']['intercom'] = project.intercom
-            data['ameneties']['wi_fi'] = project.wi_fi
-            data['ameneties']['video_conferencing'] = project.video_conferencing
-            data['ameneties']['white_board'] = project.white_board
-            data['ameneties']['tele_conferencing'] = project.tele_conferencing
-            data['ameneties']['internet'] = project.internet
-            data['ameneties']['projector'] = project.projector
+            if project.intercom:
+                data['ameneties'].append('intercom')
+            if project.wi_fi:
+                data['ameneties'].append('wi_fi')
+            if project.video_conferencing:
+                data['ameneties'].append('video_conferencing')
+            if project.white_board:
+                data['ameneties'].append('white_board')
+            if project.tele_conferencing:
+                data['ameneties'].append('tele_conferencing')
+            if project.internet:
+                data['ameneties'].append('internet')
+            if project.projector:
+                data['ameneties'].append('projector')
             all_data.append(data)
         return Response(all_data, status=status.HTTP_200_OK)
 

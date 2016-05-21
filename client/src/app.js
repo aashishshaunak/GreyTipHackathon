@@ -40,20 +40,22 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
         })
 
     }
-    $http({
-            method: 'GET',
-            url: chimeroom.base_url + '/viewrooms',
-            data: null
-    }).then(
-        function (result) {
-            $scope.availableRooms = result.data
-            console.log($scope.availableRooms)
+    $scope.viewRooms = function(){
+        $http({
+                method: 'GET',
+                url: chimeroom.base_url + '/viewrooms',
+                data: null
+        }).then(
+            function (result) {
+                $scope.availableRooms = result.data
+                console.log($scope.availableRooms)
 
-        },
-        function (err) {
-            console.log(err)
-        });
-
+            },
+            function (err) {
+                console.log(err)
+            });
+    }
+    $scope.viewRooms()
     $scope.deleteProject = function (project_id) {
         $http({
             method: 'DELETE',
@@ -80,7 +82,7 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
             data: $scope.form_object,
         }).then(
             function (result) {
-
+                $scope.viewRooms()
             },
             function (err) {
                 console.log(err)
