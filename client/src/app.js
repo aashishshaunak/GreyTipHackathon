@@ -125,10 +125,14 @@ app.controller('BookController',['$scope', 'chimeroom', '$http', function ($scop
         var meeting_date = $scope.date;
         var meeting_startat = $scope.timein;
         var meeting_endat = $scope.timeout;
-        $scope.form_object["meeting_start"] = new Date(meeting_date.getFullYear(), meeting_date.getMonth()+1,
-        meeting_date.getDate(), meeting_startat.getHours(), meeting_startat.getMinutes());
-        $scope.form_object["meeting_end"] = new Date(meeting_date.getFullYear(), meeting_date.getMonth()+1,
-        meeting_date.getDate(), meeting_endat.getHours(), meeting_endat.getMinutes());
+        meeting_startat.setDate(meeting_date.getDate())
+        meeting_startat.setMonth(meeting_date.getMonth())
+        meeting_startat.setYear(meeting_date.getFullYear())
+        meeting_endat.setDate(meeting_date.getDate())
+        meeting_endat.setMonth(meeting_date.getMonth())
+        meeting_endat.setYear(meeting_date.getFullYear())
+        $scope.form_object["meeting_start"] = meeting_startat;
+        $scope.form_object["meeting_end"] = meeting_endat;
         $http({
             method: 'POST',
             url: chimeroom.base_url + '/bookroom',
