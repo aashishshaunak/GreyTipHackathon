@@ -68,16 +68,39 @@ class ChimeBooking(APIView):
     def post(self, request):
         meeting_st = parser.parse(request.data['meeting_starting'])
         meeting_end = parser.parse(request.data['meeting_ending'])
+        amenities = ['white_board','wi_fi','projector', 'internet', 'intercom', 'tele_conferencing', 'video_conferencing']
+        requested_amenities = []
+        for facility in amenities:
+            if request.data[facility]:
+                requested_amenities.append(facility)
         try:
-            chime_room_obj = chimeRoom(room_id=request.data['room_id'], meeting_starting=meeting_st,
-                                       meeting_ending=meeting_end, active=request.data['active'],
-                                       white_board=request.data['white_board'],
-                                       wi_fi=request.data['wi_fi'], projector=request.data['projector'],
-                                       internet=request.data['internet'],
-                                       intercom=request.data['intercom'],
-                                       tele_conferencing=request.data['tele_conferencing'],
-                                       video_conferencing=request.data['video_conferencing'],user_capacity=request.data['user_capacity'],
-                                       is_locked=request.data['is_locked'])
+            feasible_room_obj = chimeRoom.objects.filter(capacity__gte=request.data['user_capacity'],facility__in=True)
+            room_id_list = []
+            for rooms in feasible_room_obj:
+                room_id_list.append(rooms.id)
+            room_id_list.sort()
+            get_chime_obj = chimeBooking.filter.get(room_id__in=room_id_list, meeting_starting__lte=meeting_st, meeting_ending__lte=meeting_end)
+            if get_chime_obj:
+                chime_room_obj = chimeBooking(room_id=None, meeting_starting=meeting_st,
+                                           meeting_ending=meeting_end, active=request.data['active'],
+                                           white_board=request.data['white_board'],
+                                           wi_fi=request.data['wi_fi'], projector=request.data['projector'],
+                                           internet=request.data['internet'],
+                                           intercom=request.data['intercom'],
+                                           tele_conferencing=request.data['tele_conferencing'],
+                                           video_conferencing=request.data['video_conferencing'],user_capacity=request.data['user_capacity'],
+                                           is_locked=False)
+            else:
+                chime_room_obj = chimeBooking(room_id=get_chime_obj.id, meeting_starting=meeting_st,
+                                              meeting_ending=meeting_end, active=request.data['active'],
+                                              white_board=request.data['white_board'],
+                                              wi_fi=request.data['wi_fi'], projector=request.data['projector'],
+                                              internet=request.data['internet'],
+                                              intercom=request.data['intercom'],
+                                              tele_conferencing=request.data['tele_conferencing'],
+                                              video_conferencing=request.data['video_conferencing'],
+                                              user_capacity=request.data['user_capacity'],
+                                              is_locked=True)
             chime_room_obj.save()
         except Exception as e:
             return Response({"error": "cannot save data with above data set"})
