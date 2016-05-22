@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	<link rel="stylesheet" type="text/css" href="newstyle.css">
-	</head>
-<body>
-	<title>User Page</title>
-	<div class="user">
-		<h2> Fill the requirement</h2>
-		<form>
-			<p><label> Name: </label><input name="name" type="text"></p>
-			<p><label> Email: </label><input type="email" name="email"></p>
-			<p><label> Date :   </label><input type="date" name="date"></p>
-			<p><label> Time In : </label><input type="time" name="timein"></p>
-			<p><label> Time Out : </label><input type="time" name="timeout"></p>
-			<p><label> Number of Seat </label><input type="text" name=noofseat></p>
-			<p> <label>Amenities</label></p>
-			<ul>
-				<li><label for="wifi"><input type="checkbox" name="wifi"> Wifi</label></li>
-        <li><label for="projector"><input type="checkbox" name="Projector"> Projector</label></li>
-        <li><label for="whiteboard"><input type="checkbox" name="whiteboard"> White Board</label></li>
-        <li><label for="internet"><input type="checkbox" name="internet"> Internet connectivity</label></li>
-        <li><label for="intercom"><input type="checkbox" name="intercom"> Intercom facility</label></li>
-        <li><label for="teleconferencing"><input type="checkbox" name="teleconferencing"> Tele-conferencing facility</label></li>
-        <li><label for="videoconferencing"><input type="checkbox" name="videoconferencing"> Video-conferencing facility</label></li>
-			</ul>
-			<input type="submit" value="Submit">
-		</form>	
-	</div>
-</body>
-</html>
+<div class="user">
+	<h2> Fill the requirement</h2>
+	<form name="formCreateRoom" novalidate>
+		<p><label> Name: </label><input name="name" ng-model="name" type="text" ></p>
+		<p><label> Email: </label><input type="email" name="email" ng-model="email" ></p>
+		<p><label> Date :   </label><input type="date" name="date" ng-model="date" min="{{minDate}}"></p>
+		<p><label> Time In : </label><input type="time" name="timein" ng-model="timein"></p>
+		<p><label> Time Out : </label><input type="time" name="timeout" ng-model="timeout"></p>
+		<p><label> Number of Seat </label><input type="number" name="noofseat" ng-model="noofseat" min="1"></p>
+		<p><label> Preferred Floor </label><input type="number" name="floorValue" ng-model="floorValue" min="0"></p>
+		<p> <label>Amenities</label></p>
+		<ul>
+			<li ng-repeat="keyword_type in amenitiesTypeList">
+            	<input id="{{ keyword_type.id }}" ng-model="keyword_type.checked"
+                   ng-checked="keyword_type.checked"
+                   ng-click="(keyword_type.checked==true)?false:true;keywordType()" type="checkbox" name="cc">
+            	<label for="{{ keyword_type.id }}">{{ keyword_type.name }}</label>
+        	</li>
+		</ul>
+		<input type="submit" value="Submit" ng-click="CreateForm(formCreateRoom)">
+	</form>
+</div>
+
 

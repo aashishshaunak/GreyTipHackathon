@@ -3,7 +3,7 @@
 <form name="formCreateRoom" novalidate>
     <label>Conference Room</label>
     <input type="text" name="conferenceName" ng-model = "conferenceName"/>
-    <p><label>Number of seats <input type="number" name="numberOfSeats" ng-model = "numberOfSeats"></label></p>
+    <p><label>Number of seats <input type="number" min="1" name="numberOfSeats" ng-model = "numberOfSeats"></label></p>
     <p><label> Floor
     <select ng-model="floorValue">
         <option value="1" name="1">1</option>

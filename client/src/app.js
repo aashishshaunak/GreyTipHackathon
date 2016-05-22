@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
                 controller: "ManageController"
             }
         ).
-	when("/book",
+	    when("/book",
             {
                 templateUrl: "book/book.html",
                 controller: "BookController"
@@ -88,8 +88,55 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
     };
 
 }]);
-app.controller('BookController',['$scope', function ($scope) {
-    
+app.controller('BookController',['$scope', 'chimeroom', function ($scope, chimeroom) {
+    $scope.bookingDetails = {};
+    $scope.bookingDetails.user_name = chimeroom.user_name;
+    $scope.bookingDetails.user_email = chimeroom.user_email;
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    $scope.minDate = yyyy + '-' + ("0" + mm).slice(-2) + '-' + dd;
+
+    $scope.itemNumber = 0 ;
+    $scope.repeatElement = [];
+    $scope.amenitiesTypeList = [{name: 'Wifi', id: 'wifi'}, {name: 'White Board', id: 'whiteboard'},
+     {name: 'Projector', id: 'projector'}, {name: 'Internet', id: 'internet'},
+     {name: 'Intercom', id: 'intercom'}, {name: 'Tele-conferencing', id: 'teleconferencing'},
+     {name: 'Video-conferencing', id: 'videoconferencing'}];
+    $scope.keywordType = function(){
+        $scope.keyword_type_text = {}
+        angular.forEach($scope.amenitiesTypeList, function (keyword_type) {
+            if (keyword_type.checked) {
+                $scope.keyword_type_text[keyword_type.id] = true
+            } else {
+                $scope.keyword_type_text[keyword_type.id] = false
+            }
+        })
+
+    }
+
+    $scope.CreateForm = function (formCreateRoom) {
+        $scope.form_object = {};
+        $scope.form_object["user_name"] = $scope.bookingDetails.user_name;
+        $scope.form_object["user_email"] = $scope.bookingDetails.user_email;
+        $scope.form_object["numberOfSeats"] = formCreateRoom.numberOfSeats.$modelValue;
+        $scope.form_object["ameneties"] = $scope.keyword_type_text;
+        $scope.form_object["floorValue"] = $scope.floorValue;
+        console.log($scope.floorValue)
+        $http({
+            method: 'POST',
+            url: chimeroom.base_url + '/bookroom',
+            data: $scope.form_object,
+        }).then(
+            function (result) {
+
+            },
+            function (err) {
+                console.log(err)
+            });
+    };
+
 }]);
 
 app.controller('404Controller', ['$scope', function ($scope) {
