@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'chimeroom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'alps_local',
-        'USER': 'alps',
-        'PASSWORD': 'password',
+        'NAME': 'alps',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }

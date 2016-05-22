@@ -63,6 +63,46 @@ class RoomView(APIView):
         project.delete()
         return Response(request.data, status=status.HTTP_200_OK)
 
+class EditView(APIView):
+    def get(self,request):
+        # import pdb;
+        # pdb.set_trace()
+        request.data[0]['name']
+        projects = chimeRoom.objects.filter(name='gabbar')
+        all_data = list()
+        for project in projects:
+            print project.__dict__
+            data = dict()
+            data['ameneties'] = []
+            data['name'] = project.name
+            data['capacity'] = project.capacity
+            data['floor'] = project.floor
+            data['is_locked'] = project.is_locked
+            if project.intercom:
+                data['ameneties'].append('intercom')
+            if project.wi_fi:
+                data['ameneties'].append('wi_fi')
+            if project.video_conferencing:
+                data['ameneties'].append('video_conferencing')
+            if project.white_board:
+                data['ameneties'].append('white_board')
+            if project.tele_conferencing:
+                data['ameneties'].append('tele_conferencing')
+            if project.internet:
+                data['ameneties'].append('internet')
+            if project.projector:
+                data['ameneties'].append('projector')
+            all_data.append(data)
+        return Response(all_data, status=status.HTTP_200_OK)
+
+    def delete(self, request):
+        try:
+            project = chimeRoom.objects.get(name=request.data['conferenceName'])
+        except chimeRoom.DoesNotExist:
+            return Response(request.data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        project.delete()
+        return Response(request.data, status=status.HTTP_200_OK)
+
 class ChimeBooking(APIView):
     def post(self, request):
         meeting_st = parser.parse(request.data['meeting_starting'])

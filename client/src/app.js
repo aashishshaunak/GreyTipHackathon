@@ -21,7 +21,7 @@ app.config(function ($routeProvider) {
         )
     }
 )
-var chimeroom = {'user_name':'Richa Gupta','user_email':'ric.gupta1103@gmail.com','base_url':'http://greytip.com:8000'}
+var chimeroom = {'user_name':'Richa Gupta','user_email':'ric.gupta1103@gmail.com','base_url':'http://localhost:8000'}
 app.constant('chimeroom',chimeroom)
 app.controller('ManageController',['$scope','chimeroom','$http', function ($scope,chimeroom,$http) {
     $scope.itemNumber = 0 ;
@@ -88,6 +88,22 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
                 console.log(err)
             });
     };
+
+    $scope.EditProject = function (project_id) {
+        $http({
+            method: 'GET',
+            url: chimeroom.base_url + '/editroom',
+            data: { name: 'gabbar' }
+        }).then(
+            function (result) {
+                console.log(result.data);
+                alert('edit successfully')
+            },
+            function (err) {
+                console.log(err)
+            });
+
+        };
 
 }]);
 app.controller('BookController',['$scope', function ($scope) {
