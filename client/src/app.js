@@ -90,10 +90,7 @@ app.controller('ManageController',['$scope','chimeroom','$http', function ($scop
     };
 
 }]);
-app.controller('BookController',['$scope', 'chimeroom', function ($scope, chimeroom) {
-    $scope.bookingDetails = {};
-    $scope.bookingDetails.user_name = chimeroom.user_name;
-    $scope.bookingDetails.user_email = chimeroom.user_email;
+app.controller('BookController',['$scope', 'chimeroom', '$http', function ($scope, chimeroom, $http) {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -120,12 +117,11 @@ app.controller('BookController',['$scope', 'chimeroom', function ($scope, chimer
 
     $scope.CreateForm = function (formCreateRoom) {
         $scope.form_object = {};
-        $scope.form_object["user_name"] = $scope.bookingDetails.user_name;
-        $scope.form_object["user_email"] = $scope.bookingDetails.user_email;
+        $scope.form_object["user_name"] = chimeroom.user_name;
+        $scope.form_object["user_email"] = chimeroom.user_email;
         $scope.form_object["numberOfSeats"] = formCreateRoom.numberOfSeats.$modelValue;
         $scope.form_object["ameneties"] = $scope.keyword_type_text;
         $scope.form_object["floorValue"] = $scope.floorValue;
-        console.log($scope.floorValue)
         $http({
             method: 'POST',
             url: chimeroom.base_url + '/bookroom',

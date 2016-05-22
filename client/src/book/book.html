@@ -1,12 +1,10 @@
 <div class="user">
-	<h2> Fill the requirement</h2>
+	<h2> Submit Booking Request</h2>
 	<form name="formCreateRoom" novalidate>
-		<p><label> Name: </label><input name="name" ng-model="name" type="text" ></p>
-		<p><label> Email: </label><input type="email" name="email" ng-model="email" ></p>
 		<p><label> Date :   </label><input type="date" name="date" ng-model="date" min="{{minDate}}"></p>
 		<p><label> Time In : </label><input type="time" name="timein" ng-model="timein"></p>
 		<p><label> Time Out : </label><input type="time" name="timeout" ng-model="timeout"></p>
-		<p><label> Number of Seat </label><input type="number" name="noofseat" ng-model="noofseat" min="1"></p>
+		<p><label> Number of Seat </label><input type="number" name="numberOfSeats" ng-model="numberOfSeats" min="1"></p>
 		<p><label> Preferred Floor </label><input type="number" name="floorValue" ng-model="floorValue" min="0"></p>
 		<p> <label>Amenities</label></p>
 		<ul>
