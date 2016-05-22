@@ -122,6 +122,13 @@ app.controller('BookController',['$scope', 'chimeroom', '$http', function ($scop
         $scope.form_object["numberOfSeats"] = formCreateRoom.numberOfSeats.$modelValue;
         $scope.form_object["ameneties"] = $scope.keyword_type_text;
         $scope.form_object["floorValue"] = $scope.floorValue;
+        var meeting_date = $scope.date;
+        var meeting_startat = $scope.timein;
+        var meeting_endat = $scope.timeout;
+        $scope.form_object["meeting_start"] = new Date(meeting_date.getFullYear(), meeting_date.getMonth()+1,
+        meeting_date.getDate(), meeting_startat.getHours(), meeting_startat.getMinutes());
+        $scope.form_object["meeting_end"] = new Date(meeting_date.getFullYear(), meeting_date.getMonth()+1,
+        meeting_date.getDate(), meeting_endat.getHours(), meeting_endat.getMinutes());
         $http({
             method: 'POST',
             url: chimeroom.base_url + '/bookroom',
