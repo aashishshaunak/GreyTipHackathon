@@ -29,8 +29,14 @@
 
     <h3>Created rooms are listed below</h3>
 <div class="displayrooms">
-<div class="wrapper">
-<div class="first">1</div><div class="sec">room name</div><div class="third">room amenities</div><div class="fourth"><input type="button" name="Edit" value="Edit"></div><div class="fifth"><input type="button" name="Delete" value="Delete"></div>
+
+<div class="wrapper" ng-repeat="data in availableRooms">
+<div class="first">{{data.name}}</div>
+    <div class="sec">{{data.capacity}}</div>
+    <div class="third">amenities</div>
+    <!--<div class="third"><span ng-repeat="key in data.ameneties">{{key}}</span> </div>-->
+    <div class="fourth"><input type="button" name="Edit" value="Edit"></div>
+    <div class="fifth"><input type="button" name="Delete" value="Delete"></div>
 </div>
 </div>
     </div>
